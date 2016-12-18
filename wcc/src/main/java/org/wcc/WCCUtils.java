@@ -1,5 +1,11 @@
 package org.wcc;
 
+import org.wcc.algorithm.Kosaraju;
+import org.wcc.algorithm.Paths;
+import org.wcc.algorithm.Transform;
+import org.wcc.data.MyDirectedGraph;
+import org.wcc.data.Path;
+
 import java.util.List;
 
 public class WCCUtils {

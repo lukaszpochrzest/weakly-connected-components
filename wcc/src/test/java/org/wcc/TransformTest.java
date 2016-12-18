@@ -4,6 +4,9 @@ import org.hamcrest.CoreMatchers;
 import org.jgrapht.Graphs;
 import org.junit.Assert;
 import org.junit.Test;
+import org.wcc.algorithm.Kosaraju;
+import org.wcc.algorithm.Transform;
+import org.wcc.data.MyDirectedGraph;
 
 import java.util.List;
 

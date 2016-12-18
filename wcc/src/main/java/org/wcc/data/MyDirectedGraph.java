@@ -1,4 +1,4 @@
-package org.wcc;
+package org.wcc.data;
 
 import org.jgrapht.graph.DefaultDirectedGraph;
 import org.jgrapht.graph.DefaultEdge;

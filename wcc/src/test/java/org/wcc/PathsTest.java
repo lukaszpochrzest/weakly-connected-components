@@ -1,6 +1,9 @@
 package org.wcc;
 
 import org.junit.Test;
+import org.wcc.algorithm.Paths;
+import org.wcc.data.MyDirectedGraph;
+import org.wcc.data.Path;
 
 import java.util.List;
 

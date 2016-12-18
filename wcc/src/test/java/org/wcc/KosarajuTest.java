@@ -3,6 +3,8 @@ package org.wcc;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
+import org.wcc.algorithm.Kosaraju;
+import org.wcc.data.MyDirectedGraph;
 
 public class KosarajuTest {
 

@@ -1,6 +1,8 @@
-package org.wcc;
+package org.wcc.algorithm;
 
 import org.jgrapht.Graphs;
+import org.wcc.data.MyDirectedGraph;
+import org.wcc.data.Path;
 
 import java.util.*;
 

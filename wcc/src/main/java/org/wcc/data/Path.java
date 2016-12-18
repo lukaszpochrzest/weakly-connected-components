@@ -1,4 +1,4 @@
-package org.wcc;
+package org.wcc.data;
 
 import java.util.LinkedList;
 import java.util.List;
