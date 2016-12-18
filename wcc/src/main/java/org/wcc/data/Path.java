@@ -28,6 +28,16 @@ public class Path {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Path))
+            return false;
+
+        return vertices.equals(((Path)o).vertices);
+    }
+
+    @Override
     public String toString() {
         return vertices.toString();
     }
