@@ -3,11 +3,15 @@ package org.wcc;
 import java.util.LinkedList;
 import java.util.List;
 
-public class WCC {
+public class Path {
 
     private List<Integer> vertices;
 
-    public WCC() {
+    public Path(List<Integer> vertices) {
+        this.vertices = vertices;
+    }
+
+    public Path() {
         vertices = new LinkedList<>();
     }
 
@@ -23,6 +27,8 @@ public class WCC {
         return vertices.indexOf(vertex) != -1;
     }
 
-
-
+    @Override
+    public String toString() {
+        return vertices.toString();
+    }
 }

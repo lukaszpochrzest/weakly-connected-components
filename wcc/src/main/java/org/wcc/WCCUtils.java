@@ -12,16 +12,12 @@ public class WCCUtils {
 
         // transform
         Transform transform = new Transform(directedGraph, stronglyConnectedComponents);
-        MyDirectedGraph sccGraph = transform.transform();
+        MyDirectedGraph<Integer> sccGraph = transform.transform();
 
         // wccs (paths)
-        List<WCC> wccs = wccs(sccGraph);
+        Paths paths = new Paths(sccGraph);
+        List<Path> wccs = paths.paths();
 
-    }
-
-    private static List<WCC> wccs(MyDirectedGraph<Integer> directedAcyclicGraph) {
-
-        return null;
     }
 
 }
