@@ -41,7 +41,6 @@ public class Transform {
 
     private void dfsEdges(final Integer u, final Integer sccId) {
 
-        // JEZELI u jest oznaczone jako nieodwiedzone:
         if(sccId > 0) {
             Integer sccIdOfU = stronglyConnectedComponents.getSCCIdOf(u);
             if(!sccId.equals(sccIdOfU)) {

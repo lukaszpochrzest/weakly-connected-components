@@ -26,7 +26,6 @@ public class Paths {
 
         // run an algorithm
 
-        // DLA KAZDEGO wierzchołka u grafu G wykonaj procedure ODWIEDZ(u).
         vertices.forEach(u -> {
             if(directedGraph.inDegreeOf(u) == 0) {
                 dfsPaths(u);
