@@ -1,7 +1,7 @@
 package org.wcc.data;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
 public class VertexContainer {
@@ -13,11 +13,15 @@ public class VertexContainer {
     }
 
     public VertexContainer() {
-        vertices = new LinkedList<>();
+        vertices = new ArrayList<>();
     }
 
     public void addVertex(Integer vertex) {
         vertices.add(vertex);
+    }
+
+    public void addVertex(int index, Integer vertex) {
+        vertices.add(index, vertex);
     }
 
     public void addVertices(Collection<Integer> vertices) {

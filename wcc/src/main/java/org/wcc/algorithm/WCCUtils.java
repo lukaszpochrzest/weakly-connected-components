@@ -15,14 +15,17 @@ public class WCCUtils {
         // kosaraju
         Kosaraju kosaraju = new Kosaraju(directedGraph);
         StronglyConnectedComponents<Integer> stronglyConnectedComponents = kosaraju.sccs();
+        kosaraju = null;
 
         // transform
         Transform transform = new Transform(directedGraph, stronglyConnectedComponents);
         MyDirectedGraph<Integer> sccGraph = transform.transform();
+        transform = null;
 
-        // wccs (paths)
+//        // wccs (paths)
         Paths paths = new Paths(sccGraph);
         List<Path> pathList = paths.paths();
+        paths = null;
 
         return null;
 //        return sccGraphPathsToOriginalGraphWCCS(pathList, stronglyConnectedComponents);
