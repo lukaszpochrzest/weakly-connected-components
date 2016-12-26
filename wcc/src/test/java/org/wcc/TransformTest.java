@@ -4,7 +4,7 @@ import org.hamcrest.CoreMatchers;
 import org.jgrapht.Graphs;
 import org.junit.Assert;
 import org.junit.Test;
-import org.wcc.algorithm.Kosaraju;
+import org.wcc.data.StronglyConnectedComponents;
 import org.wcc.algorithm.Transform;
 import org.wcc.data.MyDirectedGraph;
 
@@ -17,7 +17,7 @@ public class TransformTest {
         // given
         MyDirectedGraph<Integer> directedGraph = KosarajuTest.buildGraph();
 
-        Kosaraju.StronglyConnectedComponents<Integer> sccs = new Kosaraju.StronglyConnectedComponents<>();
+        StronglyConnectedComponents<Integer> sccs = new StronglyConnectedComponents<>();
         sccs.assignSCCIdTo(1, 1);
         sccs.assignSCCIdTo(2, 1);
         sccs.assignSCCIdTo(3, 1);

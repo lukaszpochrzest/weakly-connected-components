@@ -2,6 +2,7 @@ package org.wcc.algorithm;
 
 import org.jgrapht.Graphs;
 import org.wcc.data.MyDirectedGraph;
+import org.wcc.data.StronglyConnectedComponents;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,14 +11,14 @@ public class Transform {
 
     private MyDirectedGraph<Integer> directedGraph;
 
-    private Kosaraju.StronglyConnectedComponents<Integer> stronglyConnectedComponents;
+    private StronglyConnectedComponents<Integer> stronglyConnectedComponents;
 
     private Set<Integer> visited;
 
     private MyDirectedGraph<Integer> sccGraph;
 
     public Transform(MyDirectedGraph<Integer> directedGraph,
-                     Kosaraju.StronglyConnectedComponents<Integer> stronglyConnectedComponents) {
+                     StronglyConnectedComponents<Integer> stronglyConnectedComponents) {
         this.directedGraph = directedGraph;
         this.stronglyConnectedComponents = stronglyConnectedComponents;
     }

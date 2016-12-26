@@ -4,6 +4,7 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
 import org.wcc.algorithm.Kosaraju;
+import org.wcc.data.StronglyConnectedComponents;
 import org.wcc.data.MyDirectedGraph;
 
 public class KosarajuTest {
@@ -15,7 +16,7 @@ public class KosarajuTest {
         Kosaraju kosaraju = new Kosaraju(directedGraph);
 
         // when
-        Kosaraju.StronglyConnectedComponents<Integer> stronglyConnectedComponents =  kosaraju.sccs();
+        StronglyConnectedComponents<Integer> stronglyConnectedComponents =  kosaraju.sccs();
 
         // then
         for(Integer vertex : directedGraph.vertexSet()) {
@@ -78,7 +79,7 @@ public class KosarajuTest {
         return directedGraph;
     }
 
-    public void assert_1_4_5_11_areInDifferentSCC(Kosaraju.StronglyConnectedComponents<Integer> stronglyConnectedComponents) {
+    public void assert_1_4_5_11_areInDifferentSCC(StronglyConnectedComponents<Integer> stronglyConnectedComponents) {
         // check if 1, 4, 5, 11 are in different sccs
 
         Assert.assertThat(
@@ -112,7 +113,7 @@ public class KosarajuTest {
         );
     }
 
-    public void assert_1_2_3_areInSameSCC(Kosaraju.StronglyConnectedComponents<Integer> stronglyConnectedComponents) {
+    public void assert_1_2_3_areInSameSCC(StronglyConnectedComponents<Integer> stronglyConnectedComponents) {
         //check if 1, 2, 3 are in the same scc
 
         Assert.assertThat(
@@ -126,7 +127,7 @@ public class KosarajuTest {
         );
     }
 
-    public void assert_5_6_7_8_9_10_areInSameSCC(Kosaraju.StronglyConnectedComponents<Integer> stronglyConnectedComponents) {
+    public void assert_5_6_7_8_9_10_areInSameSCC(StronglyConnectedComponents<Integer> stronglyConnectedComponents) {
         // check if 5, 6, 7, 8, 9, 10 are in the same scc
 
         Assert.assertThat(
@@ -150,7 +151,7 @@ public class KosarajuTest {
         );
     }
 
-    public void assert_11_12_13_14_15_areInSameSCC(Kosaraju.StronglyConnectedComponents<Integer> stronglyConnectedComponents) {
+    public void assert_11_12_13_14_15_areInSameSCC(StronglyConnectedComponents<Integer> stronglyConnectedComponents) {
         // check if 11, 12, 13, 14, 15 are in the same scc
 
         Assert.assertThat(

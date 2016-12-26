@@ -2,6 +2,7 @@ package org.wcc.algorithm;
 
 import org.wcc.data.MyDirectedGraph;
 import org.wcc.data.Path;
+import org.wcc.data.StronglyConnectedComponents;
 import org.wcc.data.WeaklyConnectedComponent;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class WCCUtils {
 
         // kosaraju
         Kosaraju kosaraju = new Kosaraju(directedGraph);
-        Kosaraju.StronglyConnectedComponents<Integer> stronglyConnectedComponents = kosaraju.sccs();
+        StronglyConnectedComponents<Integer> stronglyConnectedComponents = kosaraju.sccs();
 
         // transform
         Transform transform = new Transform(directedGraph, stronglyConnectedComponents);
@@ -27,7 +28,7 @@ public class WCCUtils {
     }
 
     private static List<WeaklyConnectedComponent> sccGraphPathsToOriginalGraphWCCS(List<Path> paths,
-                                                                                   Kosaraju.StronglyConnectedComponents<Integer> sccs) {
+                                                                                   StronglyConnectedComponents<Integer> sccs) {
         List<WeaklyConnectedComponent> weaklyConnectedComponents = new ArrayList<>(paths.size());
         paths.forEach(path -> {
             WeaklyConnectedComponent wcc = new WeaklyConnectedComponent();
