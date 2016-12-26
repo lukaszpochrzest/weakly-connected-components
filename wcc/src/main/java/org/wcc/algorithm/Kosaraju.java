@@ -45,6 +45,10 @@ public class Kosaraju {
 
     private void visit(final Integer u) {
 
+        if(u<0) {
+            throw new RuntimeException();
+        }
+
         // JEZELI u jest oznaczone jako nieodwiedzone:
         if(!visited.contains(u)) {
             // Zaznacz u jako odwiedzone.

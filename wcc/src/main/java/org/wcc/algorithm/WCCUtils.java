@@ -24,7 +24,8 @@ public class WCCUtils {
         Paths paths = new Paths(sccGraph);
         List<Path> pathList = paths.paths();
 
-        return sccGraphPathsToOriginalGraphWCCS(pathList, stronglyConnectedComponents);
+        return null;
+//        return sccGraphPathsToOriginalGraphWCCS(pathList, stronglyConnectedComponents);
     }
 
     private static List<WeaklyConnectedComponent> sccGraphPathsToOriginalGraphWCCS(List<Path> paths,
