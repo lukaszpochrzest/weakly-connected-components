@@ -47,14 +47,14 @@ public class ComplexityTest {
                             "\t****************************************************************\n" +
                             "\t****************************************************************\n" +
                             "\t******************* MEMORY EXCEPTION HANDLED *******************\n" +
-                            "\t*********** PLEASE INCREASE JVM STACK (i.e. -Xss128M) **********\n" +
+                            "\t*********** PLEASE INCREASE JVM STACK (e.g. -Xss128M) **********\n" +
                             "\t****************************************************************\n" +
                             "\t****************************************************************\n" +
                             "\n\n"
             );
 
         } finally {
-            System.out.println("\b Final results:");
+            System.out.println("\n\n Final results:");
             complexityTestResultsPrinter.print();
         }
 

@@ -59,14 +59,17 @@
                         </goals>
                         <phase>package</phase>
                         <configuration>
+                            <finalName>suzuki</finalName>
+                            <outputDirectory>dist/</outputDirectory>
                             <descriptorRefs>
                                 <descriptorRef>jar-with-dependencies</descriptorRef>
                             </descriptorRefs>
                             <archive>
                                 <manifest>
-                                    <mainClass>org.suzuki.Suzuki</mainClass>
+                                    <mainClass>org.wcc.ui.Main</mainClass>
                                 </manifest>
                             </archive>
+                            <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                     </execution>
                 </executions>
