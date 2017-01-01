@@ -4,13 +4,31 @@
 
 ## Launching
 
-`$ ./dist/wcc.sh --graph dist/graph`
+`$ cd dist/`
 
-* exemplaty graph from dist/graph file is taken from [here](https://www.greatandlittle.com/studios/public/blowup-images/Dart/.directed_graph_sccs_m.jpg) except for that (1)->(1) loop edge
+`$ ./wcc.sh --graph graph`
+
+* exemplary graph from dist/graph file is taken from [here](https://www.greatandlittle.com/studios/public/blowup-images/Dart/.directed_graph_sccs_m.jpg) except for that (1)->(1) loop edge
+
+Program output:
+```
+[[4], [1, 2, 3], [5, 6, 7, 8, 9, 10], [11, 12, 13, 14, 15]]
+[[4], [11, 12, 13, 14, 15]]
+```
+Program output consists of two lines, which indicates two weakly connected components found.
+
+What's more, in each line, vertices are divided into groups, which indicate strongly connected components.
+
+So, for instance, line
+```
+[[4], [11, 12, 13, 14, 15]]
+```
+indicates weakly connected component consisting of 6 vertices, namely: 4, 11, 12, 13, 14, 15.
+Those vertices are grouped into two strongly connected components: [4] and [11, 12, 13, 14, 15].
 
 ## Complexity Test
 
-`$ ./dist/wcc.sh --test`
+`$ ./wcc.sh --test`
 
 Tests are done for multiple graphs with different sum of vertices and edges. Description of an idea for complexity test comes from [here](http://stackoverflow.com/a/3983413)
 
