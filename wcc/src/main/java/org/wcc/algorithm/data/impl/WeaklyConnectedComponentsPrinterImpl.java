@@ -5,13 +5,14 @@ import org.wcc.algorithm.data.WeaklyConnectedComponentsPrinter;
 import org.wcc.algorithm.kosaraju.data.impl.StronglyConnectedComponentsImpl;
 import org.wcc.algorithm.paths.data.TreeLikePath;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
 public class WeaklyConnectedComponentsPrinterImpl<S> implements WeaklyConnectedComponentsPrinter<S> {
 
-    private Stack<S> stack;
+    private Stack<Collection<S>> stack;
 
     private StronglyConnectedComponentsImpl<S> sccs;
 
@@ -36,7 +37,7 @@ public class WeaklyConnectedComponentsPrinterImpl<S> implements WeaklyConnectedC
 
     private void toString(TreeLikePath<S> rootTreeLikePath, List<String> result) {
 
-        stack.push(rootTreeLikePath.getRootVertex());
+        stack.push(sccs.getVertices(rootTreeLikePath.getRootVertex()));
 
         if(rootTreeLikePath.getSubPaths() == null) {
             result.add(stack.toString());
