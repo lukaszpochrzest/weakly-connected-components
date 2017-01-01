@@ -7,9 +7,6 @@ import org.wcc.algorithm.WCCUtils;
 import org.wcc.complexity.utils.EdgeNumberGenerator;
 import org.wcc.complexity.utils.IntegerIncrementalGraphFactory;
 import org.wcc.data.MyDirectedGraph;
-import org.wcc.data.WeaklyConnectedComponent;
-
-import java.util.List;
 
 public class SingleExecutionTimeTest {
 
@@ -47,8 +44,7 @@ public class SingleExecutionTimeTest {
 
 
         long startTime = System.currentTimeMillis();
-        List<WeaklyConnectedComponent> result = WCCUtils.computeWCC(graph);
-//        System.out.println(result.size());
+        WCCUtils.computeWCC(graph);
         long estimatedTime1 = System.currentTimeMillis() - startTime;
 
         return new SingleExecutionTimeTestResult(

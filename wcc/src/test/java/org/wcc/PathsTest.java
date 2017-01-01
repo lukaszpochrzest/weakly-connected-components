@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.wcc.algorithm.Paths;
 import org.wcc.data.MyDirectedGraph;
-import org.wcc.data.Path;
+import org.wcc.data.TreeLikePath;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -72,47 +72,55 @@ public class PathsTest {
         Paths paths = new Paths(directedGraph);
 
         // when
-        List<Path> wccs = paths.paths();
+        List<TreeLikePath<Integer>> wccs = paths.paths();
 
         // then
         wccs.forEach(System.out::println);
 
-        List<Path> graphPaths = new ArrayList<>(22);
-        graphPaths.add(new Path(Arrays.asList(0, 7, 14)));
-        graphPaths.add(new Path(Arrays.asList(0, 10, 14)));
-        graphPaths.add(new Path(Arrays.asList(0, 13)));
-        graphPaths.add(new Path(Arrays.asList(0, 14)));
+        List<List<Integer>> graphPaths = new ArrayList<>(22);
+        graphPaths.add(Arrays.asList(0, 7, 14));
+        graphPaths.add(Arrays.asList(0, 10, 14));
+        graphPaths.add(Arrays.asList(0, 13));
+        graphPaths.add(Arrays.asList(0, 14));
 
-        graphPaths.add(new Path(Arrays.asList(1, 2, 10, 14)));
-        graphPaths.add(new Path(Arrays.asList(1, 2, 12)));
-        graphPaths.add(new Path(Arrays.asList(1, 2, 13)));
-        graphPaths.add(new Path(Arrays.asList(1, 2, 14)));
-        graphPaths.add(new Path(Arrays.asList(1, 9, 11)));
-        graphPaths.add(new Path(Arrays.asList(1, 9, 14)));
-        graphPaths.add(new Path(Arrays.asList(1, 13)));
+        graphPaths.add(Arrays.asList(1, 2, 10, 14));
+        graphPaths.add(Arrays.asList(1, 2, 12));
+        graphPaths.add(Arrays.asList(1, 2, 13));
+        graphPaths.add(Arrays.asList(1, 2, 14));
+        graphPaths.add(Arrays.asList(1, 9, 11));
+        graphPaths.add(Arrays.asList(1, 9, 14));
+        graphPaths.add(Arrays.asList(1, 13));
 
-        graphPaths.add(new Path(Arrays.asList(3, 6, 15)));
-        graphPaths.add(new Path(Arrays.asList(3, 8, 15)));
-        graphPaths.add(new Path(Arrays.asList(3, 9, 11)));
-        graphPaths.add(new Path(Arrays.asList(3, 9, 14)));
-        graphPaths.add(new Path(Arrays.asList(3, 11)));
+        graphPaths.add(Arrays.asList(3, 6, 15));
+        graphPaths.add(Arrays.asList(3, 8, 15));
+        graphPaths.add(Arrays.asList(3, 9, 11));
+        graphPaths.add(Arrays.asList(3, 9, 14));
+        graphPaths.add(Arrays.asList(3, 11));
 
-        graphPaths.add(new Path(Arrays.asList(4, 7, 14)));
+        graphPaths.add(Arrays.asList(4, 7, 14));
 
-        graphPaths.add(new Path(Arrays.asList(5, 6, 15)));
-        graphPaths.add(new Path(Arrays.asList(5, 7, 14)));
-        graphPaths.add(new Path(Arrays.asList(5, 9, 11)));
-        graphPaths.add(new Path(Arrays.asList(5, 9, 14)));
-        graphPaths.add(new Path(Arrays.asList(5, 10, 14)));
+        graphPaths.add(Arrays.asList(5, 6, 15));
+        graphPaths.add(Arrays.asList(5, 7, 14));
+        graphPaths.add(Arrays.asList(5, 9, 11));
+        graphPaths.add(Arrays.asList(5, 9, 14));
+        graphPaths.add(Arrays.asList(5, 10, 14));
 
-        Assert.assertThat(wccs.size(), CoreMatchers.equalTo(graphPaths.size()));
+        Assert.assertThat(countPaths(wccs), CoreMatchers.equalTo(graphPaths.size()));
 
         assertContainsAll(wccs, graphPaths);
     }
 
-    private void assertContainsAll(List<Path> shouldContain, List<Path> shouldBeContained) {
+    private int countPaths(List<TreeLikePath<Integer>> paths) {
+        int size = 0;
+        for (TreeLikePath path : paths) {
+            size += path.size();
+        }
+        return size;
+    }
+
+    private void assertContainsAll(List<TreeLikePath<Integer>> shouldContain, List<List<Integer>> shouldBeContained) {
         shouldBeContained.forEach(
-                path -> Assert.assertTrue(shouldContain.contains(path))
+                path -> Assert.assertTrue(TreeLikePath.contains(shouldContain, path))
         );
     }
 

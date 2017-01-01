@@ -1,16 +1,15 @@
 package org.wcc.algorithm;
 
 import org.wcc.data.MyDirectedGraph;
-import org.wcc.data.Path;
 import org.wcc.data.StronglyConnectedComponents;
-import org.wcc.data.WeaklyConnectedComponent;
+import org.wcc.data.TreeLikePath;
+import org.wcc.data.WeaklyConnectedComponents;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class WCCUtils {
 
-    public static List<WeaklyConnectedComponent> computeWCC(MyDirectedGraph<Integer> directedGraph) {
+    public static WeaklyConnectedComponents<Integer> computeWCC(MyDirectedGraph<Integer> directedGraph) {
 
         // kosaraju
         Kosaraju kosaraju = new Kosaraju(directedGraph);
@@ -22,24 +21,12 @@ public class WCCUtils {
         MyDirectedGraph<Integer> sccGraph = transform.transform();
         transform = null;
 
-//        // wccs (paths)
+        // wccs (paths)
         Paths paths = new Paths(sccGraph);
-        List<Path> pathList = paths.paths();
+        List<TreeLikePath<Integer>> pathList = paths.paths();
         paths = null;
 
-        return null;
-//        return sccGraphPathsToOriginalGraphWCCS(pathList, stronglyConnectedComponents);
-    }
-
-    private static List<WeaklyConnectedComponent> sccGraphPathsToOriginalGraphWCCS(List<Path> paths,
-                                                                                   StronglyConnectedComponents<Integer> sccs) {
-        List<WeaklyConnectedComponent> weaklyConnectedComponents = new ArrayList<>(paths.size());
-        paths.forEach(path -> {
-            WeaklyConnectedComponent wcc = new WeaklyConnectedComponent();
-            path.getVertices().forEach(sccId -> wcc.addVertices(sccs.vertices(sccId)));
-            weaklyConnectedComponents.add(wcc);
-        });
-        return weaklyConnectedComponents;
+        return new WeaklyConnectedComponents<>(pathList, stronglyConnectedComponents);
     }
 
 }

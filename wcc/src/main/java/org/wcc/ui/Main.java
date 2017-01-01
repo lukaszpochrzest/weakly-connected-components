@@ -3,7 +3,7 @@ package org.wcc.ui;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.ParseException;
 import org.wcc.algorithm.WCCUtils;
-import org.wcc.data.WeaklyConnectedComponent;
+import org.wcc.data.WeaklyConnectedComponents;
 import org.wcc.ui.config.GraphConfig;
 import org.wcc.ui.config.GraphConfigParser;
 import org.wcc.ui.exception.GraphFileReadException;
@@ -27,9 +27,9 @@ public class Main {
             } else {
                 String graphConfigFile = FileReader.read(line.getOptionValue("graph"));
                 GraphConfig graphConfig = GraphConfigParser.toObject(graphConfigFile);
-                List<WeaklyConnectedComponent> wccs = WCCUtils.computeWCC(graphConfig.convert());
-                System.out.println("Found " + wccs.size() + " weakly connected components:\n");
-                wccs.forEach(System.out::println);
+                WeaklyConnectedComponents<Integer> wccs = WCCUtils.computeWCC(graphConfig.convert());
+                List<String> printedWccs = wccs.printToString();
+                printedWccs.forEach(System.out::println);
             }
 
         } catch (ParseException e) {
