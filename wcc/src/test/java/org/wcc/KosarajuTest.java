@@ -3,8 +3,8 @@ package org.wcc;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
-import org.wcc.algorithm.Kosaraju;
-import org.wcc.data.StronglyConnectedComponents;
+import org.wcc.algorithm.kosaraju.impl.KosarajuImpl;
+import org.wcc.algorithm.kosaraju.data.impl.StronglyConnectedComponentsImpl;
 import org.wcc.data.MyDirectedGraph;
 
 public class KosarajuTest {
@@ -13,14 +13,14 @@ public class KosarajuTest {
     public void should_FindSCC_When_GivenGraph() {
         // given
         MyDirectedGraph<Integer> directedGraph = buildGraph();
-        Kosaraju kosaraju = new Kosaraju(directedGraph);
+        KosarajuImpl kosaraju = new KosarajuImpl(directedGraph);
 
         // when
-        StronglyConnectedComponents<Integer> stronglyConnectedComponents =  kosaraju.sccs();
+        StronglyConnectedComponentsImpl<Integer> stronglyConnectedComponents =  kosaraju.computeStronglyConnectedComponents();
 
         // then
         for(Integer vertex : directedGraph.vertexSet()) {
-            System.out.println("vertex:" + vertex + " -> scc:" + stronglyConnectedComponents.getSCCIdOf(vertex));
+            System.out.println("vertex:" + vertex + " -> scc:" + stronglyConnectedComponents.getSCC(vertex));
         }
 
         // check sccs: {1,2,3}, {4}, {5, 6, 7, 8, 9, 10}, {11, 12, 13, 14, 15}
@@ -79,104 +79,104 @@ public class KosarajuTest {
         return directedGraph;
     }
 
-    public void assert_1_4_5_11_areInDifferentSCC(StronglyConnectedComponents<Integer> stronglyConnectedComponents) {
+    public void assert_1_4_5_11_areInDifferentSCC(StronglyConnectedComponentsImpl<Integer> stronglyConnectedComponents) {
         // check if 1, 4, 5, 11 are in different sccs
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(1),
-                CoreMatchers.not(stronglyConnectedComponents.getSCCIdOf(4))
+                stronglyConnectedComponents.getSCC(1),
+                CoreMatchers.not(stronglyConnectedComponents.getSCC(4))
         );
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(1),
-                CoreMatchers.not(stronglyConnectedComponents.getSCCIdOf(5))
+                stronglyConnectedComponents.getSCC(1),
+                CoreMatchers.not(stronglyConnectedComponents.getSCC(5))
         );
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(1),
-                CoreMatchers.not(stronglyConnectedComponents.getSCCIdOf(11))
+                stronglyConnectedComponents.getSCC(1),
+                CoreMatchers.not(stronglyConnectedComponents.getSCC(11))
         );
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(4),
-                CoreMatchers.not(stronglyConnectedComponents.getSCCIdOf(5))
+                stronglyConnectedComponents.getSCC(4),
+                CoreMatchers.not(stronglyConnectedComponents.getSCC(5))
         );
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(4),
-                CoreMatchers.not(stronglyConnectedComponents.getSCCIdOf(11))
+                stronglyConnectedComponents.getSCC(4),
+                CoreMatchers.not(stronglyConnectedComponents.getSCC(11))
         );
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(5),
-                CoreMatchers.not(stronglyConnectedComponents.getSCCIdOf(11))
+                stronglyConnectedComponents.getSCC(5),
+                CoreMatchers.not(stronglyConnectedComponents.getSCC(11))
         );
     }
 
-    public void assert_1_2_3_areInSameSCC(StronglyConnectedComponents<Integer> stronglyConnectedComponents) {
+    public void assert_1_2_3_areInSameSCC(StronglyConnectedComponentsImpl<Integer> stronglyConnectedComponents) {
         //check if 1, 2, 3 are in the same scc
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(1),
-                CoreMatchers.equalTo(stronglyConnectedComponents.getSCCIdOf(2))
+                stronglyConnectedComponents.getSCC(1),
+                CoreMatchers.equalTo(stronglyConnectedComponents.getSCC(2))
         );
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(2),
-                CoreMatchers.equalTo(stronglyConnectedComponents.getSCCIdOf(3))
+                stronglyConnectedComponents.getSCC(2),
+                CoreMatchers.equalTo(stronglyConnectedComponents.getSCC(3))
         );
     }
 
-    public void assert_5_6_7_8_9_10_areInSameSCC(StronglyConnectedComponents<Integer> stronglyConnectedComponents) {
+    public void assert_5_6_7_8_9_10_areInSameSCC(StronglyConnectedComponentsImpl<Integer> stronglyConnectedComponents) {
         // check if 5, 6, 7, 8, 9, 10 are in the same scc
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(5),
-                CoreMatchers.equalTo(stronglyConnectedComponents.getSCCIdOf(6))
+                stronglyConnectedComponents.getSCC(5),
+                CoreMatchers.equalTo(stronglyConnectedComponents.getSCC(6))
         );
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(7),
-                CoreMatchers.equalTo(stronglyConnectedComponents.getSCCIdOf(8))
+                stronglyConnectedComponents.getSCC(7),
+                CoreMatchers.equalTo(stronglyConnectedComponents.getSCC(8))
         );
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(5),
-                CoreMatchers.equalTo(stronglyConnectedComponents.getSCCIdOf(7))
+                stronglyConnectedComponents.getSCC(5),
+                CoreMatchers.equalTo(stronglyConnectedComponents.getSCC(7))
         );
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(7),
-                CoreMatchers.equalTo(stronglyConnectedComponents.getSCCIdOf(9))
+                stronglyConnectedComponents.getSCC(7),
+                CoreMatchers.equalTo(stronglyConnectedComponents.getSCC(9))
         );
     }
 
-    public void assert_11_12_13_14_15_areInSameSCC(StronglyConnectedComponents<Integer> stronglyConnectedComponents) {
+    public void assert_11_12_13_14_15_areInSameSCC(StronglyConnectedComponentsImpl<Integer> stronglyConnectedComponents) {
         // check if 11, 12, 13, 14, 15 are in the same scc
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(11),
-                CoreMatchers.equalTo(stronglyConnectedComponents.getSCCIdOf(12))
+                stronglyConnectedComponents.getSCC(11),
+                CoreMatchers.equalTo(stronglyConnectedComponents.getSCC(12))
         );
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(11),
-                CoreMatchers.equalTo(stronglyConnectedComponents.getSCCIdOf(13))
+                stronglyConnectedComponents.getSCC(11),
+                CoreMatchers.equalTo(stronglyConnectedComponents.getSCC(13))
         );
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(11),
-                CoreMatchers.equalTo(stronglyConnectedComponents.getSCCIdOf(14))
+                stronglyConnectedComponents.getSCC(11),
+                CoreMatchers.equalTo(stronglyConnectedComponents.getSCC(14))
         );
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(11),
-                CoreMatchers.equalTo(stronglyConnectedComponents.getSCCIdOf(15))
+                stronglyConnectedComponents.getSCC(11),
+                CoreMatchers.equalTo(stronglyConnectedComponents.getSCC(15))
         );
 
         Assert.assertThat(
-                stronglyConnectedComponents.getSCCIdOf(11),
-                CoreMatchers.equalTo(stronglyConnectedComponents.getSCCIdOf(15))
+                stronglyConnectedComponents.getSCC(11),
+                CoreMatchers.equalTo(stronglyConnectedComponents.getSCC(15))
         );
     }
 

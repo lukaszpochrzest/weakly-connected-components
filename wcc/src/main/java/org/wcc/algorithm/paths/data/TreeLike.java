@@ -1,4 +1,4 @@
-package org.wcc.data;
+package org.wcc.algorithm.paths.data;
 
 import lombok.Getter;
 
@@ -6,7 +6,6 @@ import java.util.List;
 
 public abstract class TreeLike<T extends TreeLike<T,V>, V> {
 
-    //TODO move it out of here
     @Getter
     protected V rootVertex;
 
@@ -18,11 +17,6 @@ public abstract class TreeLike<T extends TreeLike<T,V>, V> {
         this.subPaths = subPaths;
     }
 
-    //    public <TT extends TreeLike<TT, VV>, VV> TreeLike<TT, VV> convert(TreeLikeConverter<T, V, TT, VV> treeConverter) {
-//        return treeConverter.convert(this);
-//    }
-
-    //TODO move methods functions to TreeLike
 
     public boolean includes(List<V> path) {
 

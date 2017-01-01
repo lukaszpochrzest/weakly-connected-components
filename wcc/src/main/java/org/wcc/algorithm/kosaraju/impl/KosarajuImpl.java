@@ -1,12 +1,13 @@
-package org.wcc.algorithm;
+package org.wcc.algorithm.kosaraju.impl;
 
 import org.jgrapht.Graphs;
+import org.wcc.algorithm.kosaraju.Kosaraju;
 import org.wcc.data.MyDirectedGraph;
-import org.wcc.data.StronglyConnectedComponents;
+import org.wcc.algorithm.kosaraju.data.impl.StronglyConnectedComponentsImpl;
 
 import java.util.*;
 
-public class Kosaraju {
+public class KosarajuImpl implements Kosaraju {
 
     private MyDirectedGraph<Integer> directedGraph;
 
@@ -14,13 +15,13 @@ public class Kosaraju {
 
     private Stack<Integer> stack;
 
-    private StronglyConnectedComponents<Integer> stronglyConnectedComponents;
+    private StronglyConnectedComponentsImpl<Integer> stronglyConnectedComponents;
 
-    public Kosaraju(MyDirectedGraph<Integer> directedGraph) {
+    public KosarajuImpl(MyDirectedGraph<Integer> directedGraph) {
         this.directedGraph = directedGraph;
     }
 
-    public StronglyConnectedComponents<Integer> sccs() {
+    public StronglyConnectedComponentsImpl<Integer> computeStronglyConnectedComponents() {
 
         // initialize
 
@@ -28,7 +29,7 @@ public class Kosaraju {
         visited = new HashSet<>((int) Math.ceil(vertices.size() / 0.75));
         stack = new Stack<>();
         // result vertex-strongly connected component assignment - scc[vertexId] = sccId
-        stronglyConnectedComponents = new StronglyConnectedComponents<>(vertices.size());
+        stronglyConnectedComponents = new StronglyConnectedComponentsImpl<>(vertices.size());
 
         // run algorithm
 
@@ -65,10 +66,10 @@ public class Kosaraju {
     private void assign(final Integer u, final Integer root) {
 
         // JEŻELI u nie zostało oznaczone jako przydzielone do komponentu:
-        if(stronglyConnectedComponents.getSCCIdOf(u) == null) {
+        if(stronglyConnectedComponents.getSCC(u) == null) {
 
             // Przydziel u do komponentu którego korzeniem jest root.
-            stronglyConnectedComponents.assignSCCIdTo(u, root);
+            stronglyConnectedComponents.assign(u, root);
 
             // Dla każdego wierzchołka v, który jest na drugim końcu krawędzi wchodzącej do u, wykonaj PRZYDZIEL(v,root).
             Graphs.predecessorListOf(directedGraph, u).forEach(v -> assign(v, root));

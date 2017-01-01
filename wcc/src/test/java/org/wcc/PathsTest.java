@@ -3,9 +3,9 @@ package org.wcc;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
-import org.wcc.algorithm.Paths;
+import org.wcc.algorithm.paths.impl.PathsImpl;
 import org.wcc.data.MyDirectedGraph;
-import org.wcc.data.TreeLikePath;
+import org.wcc.algorithm.paths.data.TreeLikePath;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,10 +69,10 @@ public class PathsTest {
     public void should_TransformToSCCGraph_When_GivenOriginalGraphAndSCCInfo() {
         // given
         MyDirectedGraph<Integer> directedGraph = buildDAG();
-        Paths paths = new Paths(directedGraph);
+        PathsImpl paths = new PathsImpl(directedGraph);
 
         // when
-        List<TreeLikePath<Integer>> wccs = paths.paths();
+        List<TreeLikePath<Integer>> wccs = paths.computePaths();
 
         // then
         wccs.forEach(System.out::println);

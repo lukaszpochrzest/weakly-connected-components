@@ -1,23 +1,25 @@
-package org.wcc.algorithm;
+package org.wcc.algorithm.paths.impl;
 
 import org.jgrapht.Graphs;
+import org.wcc.algorithm.paths.Paths;
 import org.wcc.data.MyDirectedGraph;
-import org.wcc.data.TreeLikePath;
+import org.wcc.algorithm.paths.data.TreeLikePath;
 
 import java.util.*;
 
-public class Paths {
+public class PathsImpl implements Paths {
 
     private MyDirectedGraph<Integer> directedGraph;
 
     private Map<Integer, TreeLikePath<Integer>> vertexPathsMap;
 
-    public Paths(MyDirectedGraph<Integer> directedGraph) {
+    public PathsImpl(MyDirectedGraph<Integer> directedGraph) {
         this.directedGraph = directedGraph;
         this.vertexPathsMap = new HashMap<>();
     }
 
-    public List<TreeLikePath<Integer>> paths() {
+    @Override
+    public List<TreeLikePath<Integer>> computePaths() {
 
         // initialize
 

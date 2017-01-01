@@ -4,8 +4,8 @@ import org.hamcrest.CoreMatchers;
 import org.jgrapht.Graphs;
 import org.junit.Assert;
 import org.junit.Test;
-import org.wcc.data.StronglyConnectedComponents;
-import org.wcc.algorithm.Transform;
+import org.wcc.algorithm.kosaraju.data.impl.StronglyConnectedComponentsImpl;
+import org.wcc.algorithm.transform.impl.TransformImpl;
 import org.wcc.data.MyDirectedGraph;
 
 import java.util.List;
@@ -17,28 +17,28 @@ public class TransformTest {
         // given
         MyDirectedGraph<Integer> directedGraph = KosarajuTest.buildGraph();
 
-        StronglyConnectedComponents<Integer> sccs = new StronglyConnectedComponents<>();
-        sccs.assignSCCIdTo(1, 1);
-        sccs.assignSCCIdTo(2, 1);
-        sccs.assignSCCIdTo(3, 1);
+        StronglyConnectedComponentsImpl<Integer> sccs = new StronglyConnectedComponentsImpl<>();
+        sccs.assign(1, 1);
+        sccs.assign(2, 1);
+        sccs.assign(3, 1);
 
-        sccs.assignSCCIdTo(4,2);
+        sccs.assign(4,2);
 
-        sccs.assignSCCIdTo(5, 3);
-        sccs.assignSCCIdTo(6, 3);
-        sccs.assignSCCIdTo(7, 3);
-        sccs.assignSCCIdTo(8, 3);
-        sccs.assignSCCIdTo(9, 3);
-        sccs.assignSCCIdTo(10, 3);
+        sccs.assign(5, 3);
+        sccs.assign(6, 3);
+        sccs.assign(7, 3);
+        sccs.assign(8, 3);
+        sccs.assign(9, 3);
+        sccs.assign(10, 3);
 
-        sccs.assignSCCIdTo(11, 4);
-        sccs.assignSCCIdTo(12, 4);
-        sccs.assignSCCIdTo(13, 4);
-        sccs.assignSCCIdTo(14, 4);
-        sccs.assignSCCIdTo(15, 4);
+        sccs.assign(11, 4);
+        sccs.assign(12, 4);
+        sccs.assign(13, 4);
+        sccs.assign(14, 4);
+        sccs.assign(15, 4);
 
         // when
-        Transform transform = new Transform(directedGraph, sccs);
+        TransformImpl transform = new TransformImpl(directedGraph, sccs);
         MyDirectedGraph<Integer> sccGraph = transform.transform();
 
         // then

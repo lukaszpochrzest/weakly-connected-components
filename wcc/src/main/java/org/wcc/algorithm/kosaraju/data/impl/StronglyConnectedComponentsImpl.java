@@ -1,9 +1,9 @@
-package org.wcc.data;
+package org.wcc.algorithm.kosaraju.data.impl;
 
 import java.util.*;
 
 
-public class StronglyConnectedComponents<T> {
+public class StronglyConnectedComponentsImpl<T> implements org.wcc.algorithm.kosaraju.data.StronglyConnectedComponents<T> {
 
     private Set<T> sccIds = new HashSet<>();
 
@@ -11,29 +11,33 @@ public class StronglyConnectedComponents<T> {
 
     private Map<T, T> vertexToSCCAssignment;
 
-    public StronglyConnectedComponents() {
+    public StronglyConnectedComponentsImpl() {
         vertexToSCCAssignment = new HashMap<>();
     }
 
-    public StronglyConnectedComponents(int verticesCount) {
+    public StronglyConnectedComponentsImpl(int verticesCount) {
         vertexToSCCAssignment = new HashMap<>((int) Math.ceil(verticesCount / 0.75));
     }
 
-    public T getSCCIdOf(T vertex) {
+    @Override
+    public T getSCC(T vertex) {
         return vertexToSCCAssignment.get(vertex);
     }
 
-    public void assignSCCIdTo(T vertex, T sccId) {
+    @Override
+    public void assign(T vertex, T sccId) {
         sccIds.add(sccId);
         vertexToSCCAssignment.put(vertex, sccId);
         sccVerticesMap.addVertice(sccId, vertex);
     }
 
-    public Set<T> sccIds() {
+    @Override
+    public Set<T> getSCCs() {
         return sccIds;
     }
 
-    public Collection<T> vertices(T sccID) {
+    @Override
+    public Collection<T> getVertices(T sccID) {
         return sccVerticesMap.vertices(sccID);
     }
 

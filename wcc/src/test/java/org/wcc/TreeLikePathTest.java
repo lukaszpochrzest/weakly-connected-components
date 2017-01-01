@@ -4,7 +4,7 @@ package org.wcc;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
-import org.wcc.data.TreeLikePath;
+import org.wcc.algorithm.paths.data.TreeLikePath;
 
 import java.util.Arrays;
 

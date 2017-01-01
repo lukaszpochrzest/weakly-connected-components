@@ -1,4 +1,4 @@
-package org.wcc.data;
+package org.wcc.algorithm.paths.data;
 
 import java.util.List;
 

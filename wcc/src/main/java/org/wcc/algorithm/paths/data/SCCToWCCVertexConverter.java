@@ -1,5 +1,7 @@
-package org.wcc.data;
+package org.wcc.algorithm.paths.data;
 
+
+import org.wcc.algorithm.kosaraju.data.impl.StronglyConnectedComponentsImpl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,9 +9,9 @@ import java.util.List;
 
 public class SCCToWCCVertexConverter<V> implements TreeLikeConverter<TreeLikePath<V>, V, VertexSetTreeLike<V>, Collection<V>> {
 
-    private StronglyConnectedComponents<V> sccs;
+    private StronglyConnectedComponentsImpl<V> sccs;
 
-    public SCCToWCCVertexConverter(StronglyConnectedComponents<V> sccs) {
+    public SCCToWCCVertexConverter(StronglyConnectedComponentsImpl<V> sccs) {
         this.sccs = sccs;
     }
 
@@ -22,6 +24,6 @@ public class SCCToWCCVertexConverter<V> implements TreeLikeConverter<TreeLikePat
                 branches.add(convert(vTreeLikePath));
             }
         }
-        return new VertexSetTreeLike<>(sccs.vertices(treeLike.getRootVertex()), branches);
+        return new VertexSetTreeLike<>(sccs.getVertices(treeLike.getRootVertex()), branches);
     }
 }
