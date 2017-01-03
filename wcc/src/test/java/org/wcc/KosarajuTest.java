@@ -33,7 +33,7 @@ public class KosarajuTest {
 
     /**
      * https://www.greatandlittle.com/studios/public/blowup-images/Dart/.directed_graph_sccs_m.jpg
-     * @return graph from link WITHOUT THIS SINGGLE VERTEX1->VERTEX1 EDGE !!
+     * @return graph from link
      */
     public static MyDirectedGraph<Integer> buildGraph() {
         MyDirectedGraph<Integer> directedGraph = new MyDirectedGraph<>();
@@ -44,6 +44,7 @@ public class KosarajuTest {
         }
 
         // fill with edges (28)
+        directedGraph.addEdge(1, 1);
         directedGraph.addEdge(1, 3);
         directedGraph.addEdge(2, 1);
         directedGraph.addEdge(3, 2);

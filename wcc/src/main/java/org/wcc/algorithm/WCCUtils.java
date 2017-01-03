@@ -17,17 +17,14 @@ public class WCCUtils {
         // kosaraju
         KosarajuImpl kosaraju = new KosarajuImpl(directedGraph);
         StronglyConnectedComponentsImpl<Integer> stronglyConnectedComponents = kosaraju.computeStronglyConnectedComponents();
-        kosaraju = null;
 
         // transform
         TransformImpl transform = new TransformImpl(directedGraph, stronglyConnectedComponents);
         MyDirectedGraph<Integer> sccGraph = transform.transform();
-        transform = null;
 
         // wccs (paths)
         PathsImpl paths = new PathsImpl(sccGraph);
         List<TreeLikePath<Integer>> pathList = paths.computePaths();
-        paths = null;
 
         return new WeaklyConnectedComponentsImpl<>(pathList, stronglyConnectedComponents);
     }
