@@ -8,6 +8,4 @@ public interface WeaklyConnectedComponentsPrinter<S> {
 
     List<String> printToString(List<TreeLikePath<S>> treeLikePaths);
 
-    List<String> printToString(TreeLikePath<S> rootTreeLikePath);
-
 }

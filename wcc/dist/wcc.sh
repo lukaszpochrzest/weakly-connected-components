@@ -1,1 +1,1 @@
-java -Xss128M -jar suzuki.jar $@
+java -Xss128M -jar wcc.jar $@

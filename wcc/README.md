@@ -12,7 +12,7 @@ There are two exemplry graph prepared (files: dist/graph and dist/graph2)
 
 * exemplary graph from dist/graph file is taken from [here](https://www.greatandlittle.com/studios/public/blowup-images/Dart/.directed_graph_sccs_m.jpg)
 * exemplary graph from dist/graph2 file is taken from [here](http://phrogz.net/images/netmind/traversingdirectedgraph/samplegraph.gif) (its vertices are mapped to numbers)
-
+    
 Program output:
 ```
 [[4], [1, 2, 3], [5, 6, 7, 8, 9, 10], [11, 12, 13, 14, 15]]

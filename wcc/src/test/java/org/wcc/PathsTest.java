@@ -3,13 +3,12 @@ package org.wcc;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
+import org.wcc.algorithm.data.impl.WeaklyConnectedComponentsPrinterImpl;
 import org.wcc.algorithm.paths.impl.PathsImpl;
 import org.wcc.data.MyDirectedGraph;
 import org.wcc.algorithm.paths.data.TreeLikePath;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class PathsTest {
 
@@ -108,6 +107,91 @@ public class PathsTest {
         Assert.assertThat(countPaths(wccs), CoreMatchers.equalTo(graphPaths.size()));
 
         assertContainsAll(wccs, graphPaths);
+    }
+
+    @Test
+    public void should_Remove_Previous_And_Insert_When_UberPath() {
+        Collection<Integer> collection1 = Arrays.asList(1);
+        Collection<Integer> collection2 = Arrays.asList(2, 3);
+        Collection<Integer> collection3 = Arrays.asList(4, 5, 6);
+        Collection<Integer> collection4 = Arrays.asList(7, 8, 9, 10);
+
+        Collection<Integer> collection5 = Arrays.asList(2, 3);
+        Collection<Integer> collection6 = Arrays.asList(7, 8, 9, 10);
+
+
+        Stack<Collection<Integer>> stack56 = new Stack<>();
+        stack56.addAll(Arrays.asList(collection5, collection6));
+
+        Stack<Collection<Integer>> stack14 = new Stack<>();
+        stack14.addAll(Arrays.asList(collection1, collection2, collection3, collection4));
+
+
+        List<Stack<Collection<Integer>>> stackList = new ArrayList<>(1);
+        stackList.add(stack56);
+
+
+        WeaklyConnectedComponentsPrinterImpl.tryToInsertAndReorganize(stack14, stackList);
+
+
+        Assert.assertTrue(stackList.size() == 1);
+        Assert.assertTrue(stackList.contains(stack14));
+    }
+
+    @Test
+    public void should_Not_Insert_When_Sub_Path() {
+        Collection<Integer> collection1 = Arrays.asList(1);
+        Collection<Integer> collection2 = Arrays.asList(2, 3);
+        Collection<Integer> collection3 = Arrays.asList(4, 5, 6);
+        Collection<Integer> collection4 = Arrays.asList(7, 8, 9, 10);
+
+        Collection<Integer> collection5 = Arrays.asList(2, 3);
+        Collection<Integer> collection6 = Arrays.asList(7, 8, 9, 10);
+
+
+        Stack<Collection<Integer>> stack14 = new Stack<>();
+        stack14.addAll(Arrays.asList(collection1, collection2, collection3, collection4));
+
+        Stack<Collection<Integer>> stack56 = new Stack<>();
+        stack56.addAll(Arrays.asList(collection5, collection6));
+
+
+        List<Stack<Collection<Integer>>> stackList = Arrays.asList(stack14);
+
+
+        WeaklyConnectedComponentsPrinterImpl.tryToInsertAndReorganize(stack56, stackList);
+
+
+        Assert.assertTrue(stackList.size() == 1);
+        Assert.assertTrue(stackList.contains(stack14));
+    }
+
+    @Test
+    public void should_Insert_When_Not_Sub_Path() {
+        Collection<Integer> collection1 = Arrays.asList(1);
+        Collection<Integer> collection2 = Arrays.asList(2, 3);
+        Collection<Integer> collection3 = Arrays.asList(4, 5, 6);
+        Collection<Integer> collection4 = Arrays.asList(7, 8, 9, 10);
+
+        Collection<Integer> collection7 = Arrays.asList(2, 3);
+        Collection<Integer> collection8 = Arrays.asList(7, 8, 9, 10, 11);
+
+
+        Stack<Collection<Integer>> stack14 = new Stack<>();
+        stack14.addAll(Arrays.asList(collection1, collection2, collection3, collection4));
+
+
+        Stack<Collection<Integer>> stack78 = new Stack<>();
+        stack78.addAll(Arrays.asList(collection7, collection8));
+
+
+        List<Stack<Collection<Integer>>> stackList = new ArrayList<>(1);
+        stackList.add(stack14);
+
+        WeaklyConnectedComponentsPrinterImpl.tryToInsertAndReorganize(stack78, stackList);
+
+
+        Assert.assertTrue(stackList.size() == 2);
     }
 
     private int countPaths(List<TreeLikePath<Integer>> paths) {
