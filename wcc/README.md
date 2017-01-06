@@ -16,9 +16,8 @@ There are two exemplry graph prepared (files: dist/graph and dist/graph2)
 Program output:
 ```
 [[4], [1, 2, 3], [5, 6, 7, 8, 9, 10], [11, 12, 13, 14, 15]]
-[[4], [11, 12, 13, 14, 15]]
 ```
-Program output consists of two lines, which indicates two weakly connected components found.
+Program output consists of single line, which indicates two weakly connected components found.
 
 What's more, in each line, vertices are divided into groups, which indicate strongly connected components.
 
